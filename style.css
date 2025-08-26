@@ -1,0 +1,312 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-color: #111;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  animation: fadeInBody 1s ease-in;
+}
+
+/* Fade-in animation for body */
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Make container grow to push footer down */
+.container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Fade-in from bottom */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Box */
+.box {
+  background-color: #222;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeInBox 0.8s ease-in-out;
+}
+
+@keyframes fadeInBox {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Heading */
+.box h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+/* Input Section */
+.inputbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #111;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  transition: background-color 0.3s;
+}
+
+/* Input: center */
+.inputbox input {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputbox input:focus {
+  border-color: #4da6ff;
+  box-shadow: 0 0 5px #4da6ff;
+  outline: none;
+}
+
+/* Button: bottom center */
+.inputbox button {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  margin: 0 auto;
+}
+
+.inputbox button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.03);
+}
+
+/* DESKTOP layout (side by side) */
+@media (min-width: 600px) {
+  .inputbox {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .inputbox input {
+    max-width: none;
+  }
+  .inputbox button {
+    margin: 0;
+  }
+}
+
+/* Task Area */
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: fadeInTasks 0.6s ease-in-out;
+}
+
+@keyframes fadeInTasks {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 600px) {
+  .task {
+    flex-direction: row;
+  }
+}
+
+/* Incomplete Task */
+.left, .right {
+  flex: 1;
+  background-color: #111;
+  padding: 12px;
+  border-radius: 12px;
+  min-height: 140px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Scrollbar Styling */
+.left::-webkit-scrollbar,
+.right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.left::-webkit-scrollbar-thumb,
+.right::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+/* Task Headers */
+.left h4, .right h4 {
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: white;
+}
+
+/* Task Items */
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s, transform 0.3s ease;
+  animation: slideIn 0.3s ease-out;
+}
+
+.item:hover {
+  background-color: #eee;
+  transform: scale(1.02);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.item label {
+  margin-left: 10px;
+  flex-grow: 1;
+  font-size: 14px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Completed Task Appearance */
+.right .item {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  color: #333;
+  overflow: hidden;
+  gap: 10px;
+}
+
+.right .item h4 {
+  margin: 0;
+  font-size: 14px;
+  text-decoration: line-through;
+  color: #888;
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-grow: 1;
+}
+
+/* Delete button */
+.right .item button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.right .item button:hover {
+  background-color: #cc0000;
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  width: 100%;
+  animation: fadeInFooter 0.5s ease;
+}
+
+@keyframes fadeInFooter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.footer a {
+  color: #4da6ff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: #80c1ff;
+}
